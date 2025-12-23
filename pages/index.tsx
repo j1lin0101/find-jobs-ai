@@ -274,8 +274,8 @@ export default function Home() {
                                                             <span className="text-xs text-gray-500">{job.postedDate}</span>
                                                             <div className="flex flex-col items-center gap-1">
                                                                 <span className={`text-2xl font-bold ${job.matchScore >= 80 ? 'text-green-600' :
-                                                                        job.matchScore >= 60 ? 'text-yellow-600' :
-                                                                            'text-orange-600'
+                                                                    job.matchScore >= 60 ? 'text-yellow-600' :
+                                                                        'text-orange-600'
                                                                     }`}>
                                                                     {job.matchScore}%
                                                                 </span>
