@@ -27,9 +27,6 @@ export interface Job {
     postedDate: string
     applicationUrl: string
     matchScore: number
-    resumeFeedback?: string
-    linkedInFeedback?: string
-    // New resume analysis fields
     resumeAnalysis?: ResumeAnalysis
     linkedinAnalysis?: LinkedInAnalysis
 }
@@ -128,28 +125,6 @@ function generateRequirements(keywords: string[]): string[] {
     return [...baseRequirements, ...techRequirements].slice(0, 6)
 }
 
-function generateResumeFeedback(job: Partial<Job>, keywords: string[]): string {
-    const feedbacks = [
-        `Consider highlighting your experience with ${keywords[0] || 'relevant technologies'} more prominently in your summary.`,
-        `Add quantifiable achievements related to ${job.title?.split(' ').pop() || 'this role'} responsibilities.`,
-        `Include specific projects that demonstrate your ${keywords.slice(0, 2).join(' and ') || 'technical'} expertise.`,
-        `Tailor your skills section to emphasize the technologies mentioned in this job posting.`,
-        `Consider adding a brief section about your experience with ${job.company}'s industry or similar companies.`,
-    ]
-    return feedbacks[Math.floor(Math.random() * feedbacks.length)]
-}
-
-function generateLinkedInFeedback(): string {
-    const feedbacks = [
-        'Update your headline to include key skills mentioned in this role.',
-        'Add more detail to your current role description to match job requirements.',
-        'Consider getting endorsements for skills relevant to this position.',
-        'Your LinkedIn summary could better highlight your career trajectory for this role.',
-        'Add relevant certifications or courses to strengthen your profile for this position.',
-    ]
-    return feedbacks[Math.floor(Math.random() * feedbacks.length)]
-}
-
 function generateJobsForSource(
     description: string,
     source: typeof JOB_SOURCES[0],
@@ -220,11 +195,9 @@ function generateJobsForSource(
             sourceIcon: source.icon,
             description: jobDescription,
             requirements,
-            postedDate: `${Math.floor(Math.random() * 14) + 1} days ago`,
+            postedDate: 'Posted today',
             applicationUrl: `https://careers.${company.toLowerCase().replace(/\s+/g, '')}.com/jobs/${startIndex + i + 1}`,
             matchScore,
-            resumeFeedback: generateResumeFeedback({ title, company }, keywords),
-            linkedInFeedback: generateLinkedInFeedback(),
             resumeAnalysis,
             linkedinAnalysis,
         }
@@ -243,7 +216,7 @@ export default async function handler(
         return res.status(405).json({ error: 'Method not allowed' })
     }
 
-    const { jobDescription, resumeText, linkedinUrl = '' } = req.body
+    const { jobDescription, resumeText = '', linkedinUrl = '' } = req.body
 
     if (!jobDescription || jobDescription.trim().length === 0) {
         return res.status(400).json({ error: 'Job description is required' })

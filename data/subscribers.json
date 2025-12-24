@@ -1,0 +1,31 @@
+[
+  {
+    "email": "test@example.com",
+    "subscribedAt": "2025-12-24T06:40:03.088Z",
+    "confirmed": true
+  },
+  {
+    "email": "jobseeker@example.com",
+    "jobDescription": "Senior Full Stack Developer with React and Node.js experience, remote or hybrid, interested in AI/ML projects",
+    "subscribedAt": "2025-12-24T06:43:25.359Z",
+    "confirmed": true
+  },
+  {
+    "email": "welcome@test.com",
+    "jobDescription": "Frontend Developer with React, TypeScript, remote preferred",
+    "subscribedAt": "2025-12-24T06:47:27.039Z",
+    "confirmed": true
+  },
+  {
+    "email": "j1lin0101@gmail.com",
+    "jobDescription": "I am a masters student looking for entry level data analytics work in healthcare",
+    "subscribedAt": "2025-12-24T06:47:55.293Z",
+    "confirmed": true
+  },
+  {
+    "email": "fullstack@example.com",
+    "jobDescription": "Full Stack Engineer with React and Node.js, prefer remote, open to startup culture, 100k+ salary",
+    "subscribedAt": "2025-12-24T07:11:40.988Z",
+    "confirmed": true
+  }
+]
